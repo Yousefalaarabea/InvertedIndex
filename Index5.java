@@ -30,18 +30,19 @@ public class Index5 {
 
     public HashMap<String, DictEntry> index; // THe inverted index
     //--------------------------------------------
-
+    // Constructor initializing sources and index.
     public Index5() {
         sources = new HashMap<Integer, SourceRecord>();
         index = new HashMap<String, DictEntry>();
     }
 
+    // Setter method for N.
     public void setN(int n) {
         N = n;
     }
 
-
     //---------------------------------------------
+    //print a posting list and delete the last comma
     public void printPostingList(Posting p) {
         System.out.print("[");
         while (p != null) {
@@ -55,6 +56,7 @@ public class Index5 {
     }
 
     //---------------------------------------------
+    //print the dictionary.
     public void printDictionary() {
         Iterator it = index.entrySet().iterator();
         while (it.hasNext()) {
@@ -68,7 +70,7 @@ public class Index5 {
     }
 
     //-----------------------------------------------
-
+    //build the inverted index from given files
     public void buildIndex(String[] files) {
         int fid = 0;
         for (String fileName : files) {
@@ -91,6 +93,7 @@ public class Index5 {
     }
 
     //----------------------------------------------------------------------------
+    //index words in a single line of text
     public int indexOneLine(String ln, int fid) {
         int flen = 0;
 
@@ -133,6 +136,7 @@ public class Index5 {
     }
 
 //----------------------------------------------------------------------------
+    //check if a word is a stop word
     boolean stopWord(String word) {
         if (word.equals("the") || word.equals("to") || word.equals("be") || word.equals("for") || word.equals("from") || word.equals("in")
                 || word.equals("a") || word.equals("into") || word.equals("by") || word.equals("or") || word.equals("and") || word.equals("that")) {
@@ -145,7 +149,6 @@ public class Index5 {
 
     }
 //----------------------------------------------------------------------------
-
     String stemWord(String word) { //skip for now
         return word;
 //        Stemmer s = new Stemmer();
@@ -155,7 +158,7 @@ public class Index5 {
     }
 
     //----------------------------------------------------------------------------
-
+    //find documents containing the given phrase
     public String find_24_01(String phrase) { // any mumber of terms non-optimized search
         String result = "";
         String[] words = phrase.split("\\W+");
@@ -176,8 +179,8 @@ public class Index5 {
         return result;
     }
 
-
     //---------------------------------
+    //sort an array of words using bubble sort
     String[] sort(String[] words) {  //bubble sort
         boolean sorted = false;
         String sTmp;
@@ -198,7 +201,7 @@ public class Index5 {
     }
 
      //---------------------------------
-
+     //store the index and document information in a file
     public void store(String storageName) {
         try {
             String pathToStorage = "D:/Third_Year/Third Year/Second term/IR/Ass1/tmp11/rl"+storageName;
@@ -237,6 +240,7 @@ public class Index5 {
         }
     }
 //=========================================
+    //check if the storage file exists.
     public boolean storageFileExists(String storageName){
         java.io.File f = new java.io.File("/home/ehab/tmp11/rl/"+storageName);
         if (f.exists() && !f.isDirectory())
@@ -245,6 +249,7 @@ public class Index5 {
 
     }
 //----------------------------------------------------
+    //create an empty storage file
     public void createStore(String storageName) {
         try {
             String pathToStorage = "/home/ehab/tmp11/"+storageName;
@@ -314,6 +319,7 @@ public class Index5 {
     }
 
     //=====================================================================
+    // get the intersection of two posting lists
     public Posting intersect(Posting pL1, Posting pL2) {
         Posting answer = null;
         Posting last = null;

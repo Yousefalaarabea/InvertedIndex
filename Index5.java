@@ -43,12 +43,12 @@ public class Index5 {
 
     //---------------------------------------------
     public void printPostingList(Posting p) {
-        // Iterator<Integer> it2 = hset.iterator();
         System.out.print("[");
         while (p != null) {
-            /// -4- **** complete here ****
-            // fix get rid of the last comma
-            System.out.print("" + p.docId + "," );
+            System.out.print("" + p.docId);
+            if (p.next != null) {
+                System.out.print(",");
+            }
             p = p.next;
         }
         System.out.println("]");
@@ -68,28 +68,6 @@ public class Index5 {
     }
 
     //-----------------------------------------------
-//    public void buildIndex(String[] files) {  // from disk not from the internet
-//        int fid = 0;
-//        for (String fileName : files) {
-//            try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
-//                if (!sources.containsKey(fileName)) {
-//                    sources.put(fid, new SourceRecord(fid, fileName, fileName, "notext"));
-//                }
-//                String ln;
-//                int flen = 0;
-//                while ((ln = file.readLine()) != null) {
-//                    /// -2- **** complete here ****
-//                    ///**** hint   flen +=  ________________(ln, fid);
-//                }
-//                sources.get(fid).length = flen;
-//
-//            } catch (IOException e) {
-//                System.out.println("File " + fileName + " not found. Skip it");
-//            }
-//            fid++;
-//        }
-//        //   printDictionary();
-//    }
 
     public void buildIndex(String[] files) {
         int fid = 0;
@@ -177,30 +155,6 @@ public class Index5 {
     }
 
     //----------------------------------------------------------------------------
-//    Posting intersect(Posting pL1, Posting pL2) {
-/////****  -1-   complete after each comment ****
-////   INTERSECT ( p1 , p2 )
-////          1  answer ←      {}
-//        Posting answer = null;
-//        Posting last = null;
-////      2 while p1  != NIL and p2  != NIL
-//
-////          3 do if docID ( p 1 ) = docID ( p2 )
-//
-////          4   then ADD ( answer, docID ( p1 ))
-//                // answer.add(pL1.docId);
-//
-////          5       p1 ← next ( p1 )
-////          6       p2 ← next ( p2 )
-//
-// //          7   else if docID ( p1 ) < docID ( p2 )
-//
-////          8        then p1 ← next ( p1 )
-////          9        else p2 ← next ( p2 )
-//
-////      10 return answer
-//        return answer;
-//    }
 
     public String find_24_01(String phrase) { // any mumber of terms non-optimized search
         String result = "";
